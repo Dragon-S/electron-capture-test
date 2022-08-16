@@ -12,7 +12,7 @@ function stop() {
 ipcRenderer.on("getSources", (_, sources) => {
     console.log("sll------render-sources = ", sources)
     for (let i=0;i<sources.length;++i) {
-        if (sources[i].name==="electron") {
+        if (sources[i].name==="electron-test") {
             console.log('begin share ', sources[i])
             navigator.mediaDevices.getUserMedia({
                 audio: false,
