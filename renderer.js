@@ -1,4 +1,4 @@
-const {desktopCapturer, ipcRenderer}=require('electron')
+const {ipcRenderer}=require('electron')
 
 function start() {
     console.log("sll-----start")

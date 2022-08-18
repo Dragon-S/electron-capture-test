@@ -1,5 +1,5 @@
 // Modules to control application life and create native browser window
-const {app, BrowserWindow, ipcMain, desktopCapturer}=require('electron')
+const {app, BrowserWindow, ipcMain, desktopCapturer, desktopCapturerExpand}=require('electron')
 
 let mainWindow
 
@@ -34,7 +34,12 @@ app.on('window-all-closed', function () {
 })
 
 ipcMain.on("start", (_, arg) => {
+  desktopCapturerExpand.startObserving()
   desktopCapturer.getSources({types: ['window', 'screen']}).then((sources)=>{
     mainWindow.webContents.send("getSources", sources)
   })
 })
+
+desktopCapturerExpand.on('media-frame-bound-changed', function (_, bound) {
+  console.log("sll-----bounds = ", bound)
+});
